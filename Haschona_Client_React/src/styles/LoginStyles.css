@@ -1,0 +1,136 @@
+/* LOGINSTYLE.css */
+
+/* Remove underline under TextField in normal, enter, and hover modes */
+.inpPurple .MuiInput-underline:not(.Mui-disabled):before,
+.inpPurple .MuiInput-underline:not(.Mui-disabled):after,
+.inpPurple .MuiInput-underline:hover:not(.Mui-disabled):before,
+.inpPurple .MuiInput-underline:hover:not(.Mui-disabled):after {
+    border-bottom: none;
+}
+
+/* Default styles */
+.inpPurple {
+    background-color: #9274B2;
+    opacity: 50%;
+    color: black;
+    direction: rtl;
+    border-radius: 30px;
+}
+
+
+/* Label styles for normal mode */
+.inpPurple .MuiInputLabel-root {
+    font-size: 14px;
+    position: absolute;
+    top: 30%;
+    bottom: 0;
+    right: 0;
+    left: auto;
+    transform: translateX(-25%);
+    font-weight: bolder;
+    border-color: black;
+}
+
+/* Text input styles */
+.inpPurple .MuiInputBase-input {
+    text-indent: 15%;
+}
+
+/* Label styles for hover mode */
+.inpPurple:hover .MuiInputLabel-root {
+    color: black;
+}
+
+/* Label styles for enter mode */
+.inpPurple .MuiInputLabel-shrink {
+    transform: translateY(-95%) scale(1);
+    color: black;
+    font-weight: bolder;
+}
+
+/* Label styles for focused mode */
+.inpPurple .MuiInputLabel-root.Mui-focused {
+    color: black;
+}
+
+.errorMessage {
+    color: crimson;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+/* Select styles */
+.selectPurple {
+    background-color: #9274B2;
+    opacity: 50%;
+    color: black;
+    border-radius: 30px;
+    width: 48%;
+    height: 47px;
+}
+
+#loginBtn {
+    background-color: #9274B2;
+    color: white;
+    border-radius: 18px;
+    width: 20%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+#registerBtn {
+    width: 55%;
+    background-color: #DABB80;
+    color: black;
+    border-radius: 18px;
+}
+
+
+
+/* *****************************************
+*****************************************
+***************************************** */
+
+
+/* 
+.select {
+    background-color: #9274B2;
+    background-color: red;
+    opacity: 50%;
+    color: black;
+    border-radius: 30px;
+    border-color: black;
+    height: 50px;
+    width: 100%;
+} */
+
+/* Styles for when the select is open */
+
+/* .select:focus {
+    background-color: #9274B2;
+    opacity: 50%;
+} */
+
+
+/* Styles for the options container */
+
+/* .select option {
+    background-color: lightgray;
+    padding: 15px 0;
+} */
+
+/* Styles for the options on hover */
+
+/* .select option:hover {
+    background-color: #9274B2;
+    opacity: 0.5;
+    color: white;
+    opacity: 1;
+} */
+
+/* Styles for the selected option */
+
+/* .select option:checked {
+    background-color: #9274B2;
+    opacity: 0.5;
+} */
