@@ -1,4 +1,19 @@
 
+
+
+// import DryCleaningIcon from '@mui/icons-material/DryCleaning';
+// import LocalShippingIcon from '@mui/icons-material/LocalShipping';
+// import HandymanOutlinedIcon from '@mui/icons-material/HandymanOutlined';
+import PetsRoundedIcon from '@mui/icons-material/PetsRounded';
+import ChildFriendlyIcon from '@mui/icons-material/ChildFriendly';
+import CleaningServicesOutlinedIcon from '@mui/icons-material/CleaningServicesOutlined';
+import HandshakeIcon from '@mui/icons-material/Handshake';
+import LocalTaxiIcon from '@mui/icons-material/LocalTaxi';
+import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
+import TakeoutDiningIcon from '@mui/icons-material/TakeoutDining';
+import LocalCarWashIcon from '@mui/icons-material/LocalCarWash';
+
+
 export const citiesList = [
 
     { key: 1, value: 'אבו ג\'ווייעד (שבט)' },
@@ -1284,5 +1299,33 @@ export const gendersList = [
     { key: 2, value: 'נקבה', finalValue: 'F' },
     { key: 3, value: 'אחר', finalValue: 'O' },
 ];
+
+export const categoriesList = [
+    { key: 1, CatName: 'ביביסיטר', IconName: 'ChildFriendlyIcon' },
+    { key: 2, CatName: 'טרמפים', IconName: 'LocalTaxiIcon' },
+    { key: 3, CatName: 'ניקיון', IconName: 'CleaningServicesOutlinedIcon' },
+    { key: 4, CatName: 'דוגווקינג', IconName: 'PetsRoundedIcon' },
+    { key: 1003, CatName: 'שותף', IconName: 'HandshakeIcon' },
+    { key: 1004, CatName: 'קניות', IconName: 'LocalGroceryStoreIcon' },
+    { key: 1005, CatName: 'בישול', IconName: 'TakeoutDiningIcon' },
+    { key: 1006, CatName: 'שטיפת רכב', IconName: 'LocalCarWashIcon' },
+];
+
+export const iconMapping = {
+    ChildFriendlyIcon: ChildFriendlyIcon,
+    LocalTaxiIcon: LocalTaxiIcon,
+    CleaningServicesOutlinedIcon: CleaningServicesOutlinedIcon,
+    PetsRoundedIcon: PetsRoundedIcon,
+    HandshakeIcon: HandshakeIcon,
+    LocalGroceryStoreIcon: LocalGroceryStoreIcon,
+    TakeoutDiningIcon: TakeoutDiningIcon,
+    LocalCarWashIcon: LocalCarWashIcon,
+};
+
+
+
+
+
+
 
 

@@ -5,9 +5,16 @@ import dayjs from 'dayjs';
 const MINIMUM_AGE = 16;
 const MAXIMUM_AGE = 120;
 
+const MINIMUM_MINUTES = 30;
+
 // Calculate the minimum and maximum allowed dates:
 const minimumAllowedDate = dayjs().subtract(MINIMUM_AGE, 'years');
 const maximumAllowedDate = dayjs().subtract(MAXIMUM_AGE, 'years');
+
+
+
+
+
 
 export const loginSchema = yup.object({
     community: yup.number().required("שדה זה הינו חובה"),
@@ -55,8 +62,13 @@ export const newCommunitySchema = yup.object({
 });
 
 export const newRequestSchema = yup.object({
-    // category: yup.number().required("שדה זה הינו חובה"),
-    // dateTime: yup.dateTime().required('יש להזין את תאריך ושעת היעד'),
-    street: yup.string().required("שדה זה הינו חובה").min(2, "יש לכתוב לפחות 2 תווים").matches(/^[\p{L} ]+$/u, 'יש להזין אותיות בלבד'),
-    description: yup.string().required("שדה זה הינו חובה").min(10, 'יש להזין לפחות 10 תווים')
+
+    category: yup.number().required("יש לבחור קטגוריה לסיוע"),
+    dueDate: yup.date().required('יש להזין תאריך יעד'),
+    dueTime: yup.date().required('יש להזין שעת יעד'),
+    description: yup.string()
+        .required('יש לתאר בקצרה את הסיוע המתבקש')
+        .min(10, 'יש להזין לפחות 10 תווים')
 });
+
+

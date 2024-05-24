@@ -6,12 +6,17 @@ import { Formik, Form } from 'formik';
 
 import { Box, Button, Container, Grid, TextField, InputLabel, Select, MenuItem } from '@mui/material';
 
+
 import LogoImage from '../assets/Logo_TheStreets.png';
+
+
+// const LogoImage = '../../public/Logo_TheStreets.png';
 
 import { CommunityContext } from '../contexts/CommunityContextProvider';
 import { postReqFunction } from '../utilities/ApiUtilities';
 import { loginSchema } from '../utilities/YupSchemas';
 import '../styles/LoginStyles.css';
+import { useEffect } from 'react';
 
 
 const apiForLogin = 'https://proj.ruppin.ac.il/cgroup62/test2/tar1/api/Users/Login';
@@ -20,13 +25,19 @@ export default function Login() {
 
     const navigate = useNavigate();
     const { communities } = useContext(CommunityContext);
-    const [user, setUser] = useState(JSON.parse(sessionStorage.getItem('user')) || '');
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')) || null);
     const [errorMessage, setErrorMessage] = useState('');
+
+    useEffect(() => {
+        if (user !== null) {
+            navigate('/Home');
+        }
+    }, [])
 
     async function handlePostLogin(loginDetails) {
         try {
             const loggedInUser = await postReqFunction(loginDetails, apiForLogin);
-            sessionStorage.setItem('user', JSON.stringify(loggedInUser));
+            localStorage.setItem('user', JSON.stringify(loggedInUser));
             setUser(loggedInUser);
             navigate('/Home');
         } catch (error) {
@@ -42,7 +53,7 @@ export default function Login() {
             phoneNum: values.phoneNumber,
             password: values.password
         }
-
+        localStorage.setItem('userCommunityId', JSON.stringify(values.community));
         handlePostLogin(userToLogin);
         actions.resetForm();
     };
@@ -50,6 +61,8 @@ export default function Login() {
     const getToMapCommunityPage = () => {
         navigate("/CommunitiesMap");
     }
+
+
 
     return (
         <Container maxWidth="lg" style={{ height: '90vh', display: 'flex', flexDirection: 'column' }}>

@@ -52,22 +52,6 @@ export default function Register() {
             isActive: 'f'
         }
 
-        // let userToRegister2 = {
-        //     // Add profilePic here!!!
-        //     firstName: 'ניב',
-        //     lastName: 'אסרף',
-        //     phoneNum: '0526990534',
-        //     password: 'Niv1234',
-        //     gender: 'ז',
-        //     city: 'אור יהודה',
-        //     street: 'הברזל',
-        //     homeNum: 22,
-        //     birthDate: "2024-05-17T09:56:05.578Z", // fix!
-        //     description: 'אוהב לעזור ומוכן להתנדב',
-        //     ProfilePic: 'MyProfileImg..',
-        //     communityId: 2,      // fix!
-        // }
-
         if (!isManager) {
             let newUser = { userToRegister, communityId: registerObj.communityId };
 
@@ -220,7 +204,6 @@ export default function Register() {
                                     <Box>
                                         <LocalizationProvider dateAdapter={AdapterDayjs}>
                                             <DatePicker
-                                                // sx={{border:'1px solid red'}}
                                                 label="תאריך לידה"
                                                 variant='standard'
                                                 format='DD/MM/YYYY'

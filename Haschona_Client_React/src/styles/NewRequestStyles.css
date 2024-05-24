@@ -1,0 +1,20 @@
+/* ---NewRequestStyles--- */
+#inpRequestDiscription {
+    border: #9274B2 2px solid;
+    border-radius: 20px;
+    width: 35vw;
+    padding: 15px;
+    padding-bottom: 60px;
+    color: black;
+    direction: rtl;
+    font-size: 14px;
+}
+
+#btnCreateNewRequest {
+    background-color: #9274B2;
+    color: white;
+    border-radius: 18px;
+    width: 29%;
+    margin-top: -5%;
+    margin-bottom: 1%;
+}

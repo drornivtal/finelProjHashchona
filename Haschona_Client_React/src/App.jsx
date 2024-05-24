@@ -12,6 +12,8 @@ import Home from './screens/tabs/Home';
 
 
 import CommunityContextProvider from './contexts/CommunityContextProvider';
+import NewRequest from './screens/tabs/NewRequest';
+import RequestDisplay from './components/RequestDisplay';
 
 
 function App() {
@@ -23,7 +25,10 @@ function App() {
         <Route path="/CommunitiesMap" element={<CommunitiesMap />} />
         <Route path="/Register" element={<Register />} />
         <Route path="/NewCommunity" element={<NewCommunity />} />
+        
+        <Route path="/NewRequest" element={<NewRequest />} />
         <Route path="/Home" element={<Home />} />
+        <Route path="/RequestDisplay" element={<RequestDisplay />} />
       </Routes>
     </CommunityContextProvider>
   )
