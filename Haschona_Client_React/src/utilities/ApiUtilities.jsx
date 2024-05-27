@@ -27,11 +27,11 @@ export async function getReqAllCommunities() {
 
 
 // Fetch function - "POST" - send new object to DB 
-export async function postReqFunction(objToPost, api) {
+export async function postAndPutReqFunction(objToPost, api, method) {
 
     try {
         const response = await fetch(api, {
-            method: 'POST',
+            method: method, //method = 'POST' OR 'PUT'
             headers: new Headers({
                 'Content-Type': 'application/json; charset=UTF-8'
             }),

@@ -13,7 +13,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { CommunityContext } from '../contexts/CommunityContextProvider';
 import { citiesList, gendersList } from '../utilities/ListsUtilities';
 import { registerSchema } from '../utilities/YupSchemas';
-import { postReqFunction } from '../utilities/ApiUtilities';
+import { postAndPutReqFunction } from '../utilities/ApiUtilities';
 
 import LogoImage from '../assets/Logo_TheStreets.png';
 
@@ -58,7 +58,7 @@ export default function Register() {
             console.log("this is a regular user: ");
             console.log(newUser);
             // In this point need to post the new user to server!!!
-            postReqFunction(newUser, apiNewUser);
+            postAndPutReqFunction(newUser, apiNewUser, 'POST');
             navigate('/');
         }
         else {

@@ -14,7 +14,7 @@ import LogoImage from '../../assets/Logo_TheStreets.png';
 import '../../styles/NewRequestStyles.css';
 import '../../styles/RegisterStyles.css';
 import '../../styles/LoginStyles.css';
-import { postReqFunction } from "../../utilities/ApiUtilities";
+import { postAndPutReqFunction } from "../../utilities/ApiUtilities";
 
 
 export default function NewRequest() {
@@ -57,7 +57,7 @@ export default function NewRequest() {
 
         console.log("this is a newRequest : ");
         console.log(newRequest);
-        postReqFunction(newRequest, apiNewReq);
+        postAndPutReqFunction(newRequest, apiNewReq,'POST');
         actions.resetForm();
     };
 

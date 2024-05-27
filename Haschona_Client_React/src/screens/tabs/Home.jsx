@@ -8,7 +8,7 @@ import { categoriesList, iconMapping } from "../../utilities/ListsUtilities";
 import LogoImage from '../../assets/Logo_TheStreets.png';
 import RequestDisplay from "../../components/RequestDisplay";
 import { formatDueDate, formatPostDate, formatTime, getDayOfWeekInHebrew } from "../../utilities/FunctionsUtilities";
-import { postReqFunction } from "../../utilities/ApiUtilities";
+import { postAndPutReqFunction } from "../../utilities/ApiUtilities";
 
 
 export default function Home() {
@@ -20,16 +20,19 @@ export default function Home() {
     const userDetails = JSON.parse(localStorage.getItem('user'));
     const userCommunity = JSON.parse(localStorage.getItem('userCommunityId'));
 
-    const apiAllRequests = 'https://proj.ruppin.ac.il/cgroup62/test2/tar1/api/RequestsForHelp/ActiveReqByCommunity';
+    const apiAllRequests = 'https://proj.ruppin.ac.il/cgroup62/test2/tar1/api/RequestsForHelp/ActiveReqByCommunityByUser';
+
 
     // component did mount
     useEffect(() => {
         async function fetchAndSetRequest() {
+
             try {
                 const jsonObjToPost = {
-                    "CommunityID": userCommunity
+                    "CommunityID": userCommunity,
+                    "UserID": userDetails.userId
                 };
-                const fetchedRequests = await postReqFunction(jsonObjToPost, apiAllRequests);
+                const fetchedRequests = await postAndPutReqFunction(jsonObjToPost, apiAllRequests, 'POST');
 
                 if (fetchedRequests) {
                     setAllRequests(fetchedRequests);
@@ -59,9 +62,8 @@ export default function Home() {
         });
     };
 
-    const filteredRequests = allRequests.filter(request => request.userReqID !== userDetails.userId)
-        .filter(request => selectedCategories.length === 0 || selectedCategories.includes(request.categoryId));
-
+    const filteredRequests = allRequests.filter(requestObj => requestObj.request.userReqID !== userDetails.userId)
+        .filter(requestObj => selectedCategories.length === 0 || selectedCategories.includes(requestObj.request.categoryId));
 
     return (
         // <>
@@ -69,6 +71,8 @@ export default function Home() {
         //     <button color="green" onClick={goToNewRequestPage}>+</button>
         // </>
         <Container sx={{ display: 'flex', flexDirection: 'column', height: '90vh', width: '75vw', padding: '5px' }}>
+
+            {/* Logo Img Box */}
             <Box
                 sx={{
                     display: 'flex',
@@ -78,7 +82,6 @@ export default function Home() {
                     height: '18vh',
                     width: '100%',
                     // backgroundColor: 'greenyellow',
-
                 }}
             >
                 <img
@@ -91,7 +94,7 @@ export default function Home() {
                 />
             </Box>
 
-
+            {/* Categories Box */}
             <Box
                 sx={{
                     backgroundColor: 'lightgray',
@@ -114,7 +117,6 @@ export default function Home() {
                     categoriesList.map((category) => {
                         const IconComponent = iconMapping[category.IconName];
                         const isSelected = selectedCategories.includes(category.key);
-
                         return (
 
                             <Button
@@ -140,6 +142,7 @@ export default function Home() {
 
             </Box>
 
+            {/* Display Request Box */}
             <Box
                 sx={{
                     // backgroundColor: 'orange',
@@ -161,19 +164,18 @@ export default function Home() {
                         justifyContent: 'flex-start',
                         alignItems: 'center',
                     }}>
-
                     {
-                        filteredRequests.map((request) => (
-                            <Grid item xs={12} key={request.reqID}>
+                        filteredRequests.map((requestObj) => (
+                            <Grid item xs={12} key={requestObj.request.reqID}>
                                 <RequestDisplay
-                                    ReqId={request.reqID}
-                                    UserName={'טל ברק'} //~ need to fix in server ~ 
-                                    DueDate={formatDueDate(request.dueDate)}
-                                    DueTime={formatTime(request.dueTime)}
-                                    DueDateHebrewDay={getDayOfWeekInHebrew(request.dueDate)}
-                                    PostDate={formatPostDate(request.postDate)}
-                                    PostTime={formatTime(request.postTime)}
-                                    Description={request.description}
+                                    ReqId={requestObj.request.reqID}
+                                    UserName={requestObj.fullNameOfReq} //~ need to fix in server ~ 
+                                    DueDate={formatDueDate(requestObj.request.dueDate)}
+                                    DueTime={formatTime(requestObj.request.dueTime)}
+                                    DueDateHebrewDay={getDayOfWeekInHebrew(requestObj.request.dueDate)}
+                                    PostDate={formatPostDate(requestObj.request.postDate)}
+                                    PostTime={formatTime(requestObj.request.postTime)}
+                                    Description={requestObj.request.description}
                                 />
                             </Grid>
                         ))

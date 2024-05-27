@@ -13,7 +13,7 @@ import LogoImage from '../assets/Logo_TheStreets.png';
 // const LogoImage = '../../public/Logo_TheStreets.png';
 
 import { CommunityContext } from '../contexts/CommunityContextProvider';
-import { postReqFunction } from '../utilities/ApiUtilities';
+import { postAndPutReqFunction } from '../utilities/ApiUtilities';
 import { loginSchema } from '../utilities/YupSchemas';
 import '../styles/LoginStyles.css';
 import { useEffect } from 'react';
@@ -36,7 +36,7 @@ export default function Login() {
 
     async function handlePostLogin(loginDetails) {
         try {
-            const loggedInUser = await postReqFunction(loginDetails, apiForLogin);
+            const loggedInUser = await postAndPutReqFunction(loginDetails, apiForLogin,'POST');
             localStorage.setItem('user', JSON.stringify(loggedInUser));
             setUser(loggedInUser);
             navigate('/Home');

@@ -11,7 +11,7 @@ import { citiesList } from "../utilities/ListsUtilities";
 import LogoImage from '../assets/Logo_TheStreets.png';
 import '../styles/LoginStyles.css';
 import '../styles/NewCommunityStyles.css';
-import { postReqFunction } from "../utilities/ApiUtilities";
+import { postAndPutReqFunction } from "../utilities/ApiUtilities";
 
 const apiNewCommunity = 'https://proj.ruppin.ac.il/cgroup62/test2/tar1/api/Communities/InsertNewCommunity';
 
@@ -43,7 +43,7 @@ export default function NewCommunity() {
         //Check if newCommunityWithUser arrived to this page!
         console.log(newCommunityWithUser);
 
-        postReqFunction(newCommunityWithUser, apiNewCommunity);
+        postAndPutReqFunction(newCommunityWithUser, apiNewCommunity, 'POST');
 
         navigate('/');
         actions.resetForm();
