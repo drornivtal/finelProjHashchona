@@ -16,6 +16,13 @@
     direction: rtl;
     border-radius: 30px;
 }
+.inpPurple {
+    background-color: #9274B2;
+    opacity: 70%;
+    color: black;
+    direction: rtl;
+    border-radius: 30px;
+}
 
 
 /* Label styles for normal mode */

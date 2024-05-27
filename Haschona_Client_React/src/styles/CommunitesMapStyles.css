@@ -1,0 +1,11 @@
+#btnNewCommunity {
+    background-color: #DABB80;
+    color: black;
+    border-radius: 18px;
+}
+
+.PopUpOnMap {
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+}

@@ -26,6 +26,9 @@ export default function Register() {
     const { state } = useLocation();
     let registerObj = state;
 
+    //for check!
+    console.log(registerObj);
+
     let isManager = registerObj.isManager;
 
     const { communities } = useContext(CommunityContext);

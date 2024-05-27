@@ -18,7 +18,6 @@ import { loginSchema } from '../utilities/YupSchemas';
 import '../styles/LoginStyles.css';
 import { useEffect } from 'react';
 
-
 const apiForLogin = 'https://proj.ruppin.ac.il/cgroup62/test2/tar1/api/Users/Login';
 
 export default function Login() {
@@ -36,7 +35,7 @@ export default function Login() {
 
     async function handlePostLogin(loginDetails) {
         try {
-            const loggedInUser = await postAndPutReqFunction(loginDetails, apiForLogin,'POST');
+            const loggedInUser = await postAndPutReqFunction(loginDetails, apiForLogin, 'POST');
             localStorage.setItem('user', JSON.stringify(loggedInUser));
             setUser(loggedInUser);
             navigate('/Home');
