@@ -22,7 +22,6 @@ export default function Home() {
 
     const apiAllRequests = 'https://proj.ruppin.ac.il/cgroup62/test2/tar1/api/RequestsForHelp/ActiveReqByCommunityByUser';
 
-
     // component did mount
     useEffect(() => {
         async function fetchAndSetRequest() {
@@ -70,7 +69,7 @@ export default function Home() {
         //     <div> this is Home page</div>
         //     <button color="green" onClick={goToNewRequestPage}>+</button>
         // </>
-        <Container sx={{ display: 'flex', flexDirection: 'column', height: '90vh', width: '75vw', padding: '5px' }}>
+        <Container sx={{ display: 'flex', flexDirection: 'column', height: '90vh', width: '80vw', padding: '5px' }}>
 
             {/* Logo Img Box */}
             <Box
@@ -176,6 +175,7 @@ export default function Home() {
                                     PostDate={formatPostDate(requestObj.request.postDate)}
                                     PostTime={formatTime(requestObj.request.postTime)}
                                     Description={requestObj.request.description}
+                                    profileImg={requestObj.profilePicture}
                                 />
                             </Grid>
                         ))

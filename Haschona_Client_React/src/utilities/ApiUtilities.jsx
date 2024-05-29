@@ -1,7 +1,5 @@
 
 
-
-
 // Fetch function - "GET"  communites from the server
 export async function getReqAllCommunities() {
     const api = 'https://proj.ruppin.ac.il/cgroup62/test2/tar1/api/Communities/ReadApprovedCommunities';
@@ -23,8 +21,7 @@ export async function getReqAllCommunities() {
         console.error('Error fetching communities:', error.message);
         throw error;
     }
-}
-
+};
 
 // Fetch function - "POST" - send new object to DB 
 export async function postAndPutReqFunction(objToPost, api, method) {
@@ -53,6 +50,6 @@ export async function postAndPutReqFunction(objToPost, api, method) {
         console.error('Error POST methood:', error);
         throw new Error('Failed to POST. Please try again.');
     }
-}
+};
 
 

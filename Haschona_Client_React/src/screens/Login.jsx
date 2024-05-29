@@ -9,7 +9,6 @@ import { Box, Button, Container, Grid, TextField, InputLabel, Select, MenuItem }
 
 import LogoImage from '../assets/Logo_TheStreets.png';
 
-
 // const LogoImage = '../../public/Logo_TheStreets.png';
 
 import { CommunityContext } from '../contexts/CommunityContextProvider';
@@ -25,7 +24,7 @@ export default function Login() {
     const navigate = useNavigate();
     const { communities } = useContext(CommunityContext);
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')) || null);
-    const [errorMessage, setErrorMessage] = useState('');
+    // const [errorMessage, setErrorMessage] = useState('');
 
     useEffect(() => {
         if (user !== null) {
@@ -64,12 +63,14 @@ export default function Login() {
 
 
     return (
-        <Container maxWidth="lg" style={{ height: '90vh', display: 'flex', flexDirection: 'column' }}>
-            <Box sx={{ backgroundColor: '#ffffff', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '20vh', marginBottom: '2%' }}>
-                <img src={LogoImage} alt="Logo" style={{ maxWidth: '80%', }} />
+        <Container maxWidth="lg" style={{ height: '90vh', width: '75vw', display: 'flex', flexDirection: 'column' }}>
+            <Box sx={{ backgroundColor: '#ffffff', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '20vh', width: '100%', marginBottom: '2%' }}>
+                <img src={LogoImage} alt="Logo"
+                    style={{ maxWidth: '80%', }}
+                />
             </Box>
 
-            <Box sx={{ backgroundColor: '#ffffff', height: '70vh' }}>
+            <Box sx={{ backgroundColor: '#ffffff', height: '70vh', width: '100%' }}>
                 <Formik
                     initialValues={{ community: '', phoneNumber: '', password: '' }}
                     validationSchema={loginSchema}

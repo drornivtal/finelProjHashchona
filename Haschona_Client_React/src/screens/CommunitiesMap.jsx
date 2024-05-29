@@ -32,10 +32,9 @@ export default function CommunitiesMap() {
 
     let regularRegisterObj = {
         isManager: false,
-        // communityId: 4,
         inpCssClass: 'inpYellow',
         selectCssClass: 'selectYellow',
-
+        imgInputColor: '#DABB80',
         btnCssId: 'btnToRegYellow',
         inpAboutCssId: 'inpAboutYellow',
         btnText: 'הרשמה'
@@ -44,7 +43,7 @@ export default function CommunitiesMap() {
         isManager: true,
         inpCssClass: 'inpPurple',
         selectCssClass: 'selectPurple',
-
+        imgInputColor: '#9274B2',
         btnCssId: 'btnToNextLevelPurple',
         inpAboutCssId: 'inpAboutPurple',
         btnText: 'לשלב הבא'

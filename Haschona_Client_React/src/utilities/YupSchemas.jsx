@@ -12,10 +12,6 @@ const minimumAllowedDate = dayjs().subtract(MINIMUM_AGE, 'years');
 const maximumAllowedDate = dayjs().subtract(MAXIMUM_AGE, 'years');
 
 
-
-
-
-
 export const loginSchema = yup.object({
     community: yup.number().required("שדה זה הינו חובה"),
     phoneNumber: yup.string()
@@ -30,7 +26,8 @@ export const loginSchema = yup.object({
 
 export const registerSchema = yup.object({
 
-    //imageUri: yup.string().required()
+    imageUri: yup.string().required("יש להעלות תמונת פרופיל"),
+    // imageUri: yup.string().url('Invalid image URL').required('Image is required'),
     firstName: yup.string().required("שדה זה הינו חובה").min(2, "יש לכתוב לפחות 2 תווים").matches(/^[\p{L} ]+$/u, 'יש להזין אותיות בלבד'),
     lastName: yup.string().required("שדה זה הינו חובה").min(2, "יש לכתוב לפחות 2 תווים").matches(/^[\p{L} ]+$/u, 'יש להזין אותיות בלבד'),
     gender: yup.string().required('יש לבחור ערך מהרשימה'),

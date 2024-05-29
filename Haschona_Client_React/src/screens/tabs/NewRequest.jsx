@@ -57,19 +57,19 @@ export default function NewRequest() {
 
         console.log("this is a newRequest : ");
         console.log(newRequest);
-        postAndPutReqFunction(newRequest, apiNewReq,'POST');
+        postAndPutReqFunction(newRequest, apiNewReq, 'POST');
         actions.resetForm();
     };
 
     return (
-        <Container sx={{ display: 'flex', flexDirection: 'column', height: '91vh', width: '87vw' }}>
+        <Container sx={{ display: 'flex', flexDirection: 'column', height: '90vh', width: '80vw' }}>
             <Box
                 sx={{
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'flex-start',
                     alignItems: 'center',
-                    height: '20%',
+                    height: '20vh',
                     width: '100%',
                     // backgroundColor: 'greenyellow',
 
@@ -87,7 +87,7 @@ export default function NewRequest() {
 
 
             {/* <Box sx={{height: '80%',backgroundColor: 'orange' }} > */}
-            <Box sx={{ height: '80%' }} >
+            <Box sx={{ height: '70vh', width: '100%' }} >
                 <Formik
                     initialValues={{
                         category: null,

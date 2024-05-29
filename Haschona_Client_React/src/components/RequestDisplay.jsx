@@ -1,4 +1,6 @@
 
+import { useState } from 'react';
+
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -6,7 +8,6 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Avatar } from '@mui/material';
-import { useState } from 'react';
 
 import { postAndPutReqFunction } from '../utilities/ApiUtilities';
 
@@ -61,6 +62,7 @@ export default function RequestDisplay(props) {
         }));
     };
 
+
     return (
 
         <>
@@ -89,7 +91,10 @@ export default function RequestDisplay(props) {
                     </Typography>
 
                     <Box sx={{ display: 'flex', flexDirection: 'row', direction: 'rtl', marginTop: '1%' }}>
-                        <Avatar sx={{ backgroundColor: '#708DD3' }}>{(props.UserName).split('')[0]}</Avatar>
+                        {/* <Avatar sx={{ backgroundColor: '#708DD3' }}>{(props.UserName).split('')[0]}</Avatar> */}
+
+                        <Avatar sx={{ backgroundColor: '#708DD3', width: 48, height: 48 }} alt={(props.UserName).split('')[0]} src={props.profileImg} />
+
                         <Typography variant="h7" component="h5" sx={{ paddingRight: 1.5, textAlign: 'right' }}>
                             {/* שלום, מחפשת מישהו שיוציא לי את הכלב
                         שלום, מחפשת מישהו שיוציא לי את הכלב שלום, מחפשת מישהו שיוציא */}

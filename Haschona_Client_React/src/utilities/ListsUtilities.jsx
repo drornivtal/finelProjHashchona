@@ -1292,8 +1292,6 @@ export const citiesList = [
     { key: 1274, value: "תרום" }
 ];
 
-
-
 export const gendersList = [
     { key: 1, value: 'זכר', finalValue: 'M' },
     { key: 2, value: 'נקבה', finalValue: 'F' },

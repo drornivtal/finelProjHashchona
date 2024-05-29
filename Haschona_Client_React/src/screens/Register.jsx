@@ -5,7 +5,9 @@ import dayjs from 'dayjs';
 
 import { Formik, Form } from 'formik';
 
-import { Box, Button, Container, Grid, TextField, Select, MenuItem, InputLabel } from '@mui/material';
+import { Box, Button, Container, Grid, TextField, Select, MenuItem, InputLabel, IconButton, Avatar } from '@mui/material';
+import { PhotoCamera } from '@mui/icons-material';
+
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -21,6 +23,22 @@ import '../styles/RegisterStyles.css';
 import '../styles/LoginStyles.css';
 
 export default function Register() {
+
+    const handleFileChange = (file, setFieldValue) => {
+        if (!file) {
+            setFieldValue("imageUri", "");
+            return;
+        }
+        const reader = new FileReader();
+        reader.onload = () => {
+            setFieldValue("imageUri", reader.result);
+        };
+        reader.onerror = () => {
+            console.error("Failed to read file");
+            setFieldValue("imageUri", "");
+        };
+        reader.readAsDataURL(file);
+    };
 
     const navigate = useNavigate();
     const { state } = useLocation();
@@ -40,7 +58,6 @@ export default function Register() {
     const handleFormSubmit = (values, actions) => {
 
         let userToRegister = {
-            // Add profilePic here!!!
             firstName: values.firstName,
             lastName: values.lastName,
             phoneNum: values.phoneNumber,
@@ -49,10 +66,10 @@ export default function Register() {
             city: values.city,
             street: values.street,
             homeNum: values.homeNumber,
-            // birthDate: "1990-05-17T09:56:05.578Z", // fix!
             birthDate: values.birthDate.toISOString(),
             description: values.about,
-            isActive: 'f'
+            isActive: 'f',
+            profilePicture: values.imageUri ///Fix rhe url!
         }
 
         if (!isManager) {
@@ -74,7 +91,7 @@ export default function Register() {
     };
 
     return (
-        <Container maxWidth="lg" style={{ height: '90vh', display: 'flex', flexDirection: 'column' }}>
+        <Container maxWidth="lg" style={{ height: '90vh', width: '75vw', display: 'flex', flexDirection: 'column' }}>
 
             <Box sx={{ backgroundColor: '#ffffff', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '10vh', marginBottom: '10%', marginTop: '3%' }}>
                 <img src={LogoImage} alt="Logo" style={{ maxWidth: '45%' }} />
@@ -83,7 +100,8 @@ export default function Register() {
             <Box sx={{ backgroundColor: '#ffffff', height: '80vh' }}>
                 <Formik
                     initialValues={{
-                        imageUri: '', firstName: '', lastName: '', gender: '',
+                        imageUri: '',
+                        firstName: '', lastName: '', gender: '',
                         birthDate: dayjs(), // --- today date for defaulte value ---
                         phoneNumber: '', password: '', city: '',
                         street: '', homeNumber: '', about: ''
@@ -101,25 +119,41 @@ export default function Register() {
                                 <Grid item xs={12} >
                                     <Box>
 
-                                        <TextField
-                                            id="imageUri"
+                                        <input
                                             label="תמונת פרופיל:"
                                             type='file'
-                                            variant='standard'
-                                            className={registerObj.inpCssClass}
-                                            onChange={e => {
-                                                formikProps.setFieldValue('imageUri', e.target.value);
+                                            accept="image/*"
+                                            style={{ display: 'none' }}
+                                            id="upload-button"
+                                            onChange={(e) => {
+                                                let imgFile = e.target.files[0];
+                                                handleFileChange(imgFile, formikProps.setFieldValue);
                                             }}
-                                            value={formikProps.values.imageUri}
                                             onBlur={formikProps.handleBlur('imageUri')}
-                                            error={Boolean(formikProps.errors.imageUri)}
+                                            error={formikProps.errors.imageUri}
+
                                         />
+                                        <label htmlFor="upload-button">
+                                            <IconButton component="span">
+                                                <Avatar
+                                                    src={formikProps.values.imageUri}
+                                                    sx={{
+                                                        width: 80, height: 80,
+                                                        bgcolor: registerObj.imgInputColor,
+
+                                                    }}
+                                                >
+                                                    {!formikProps.values.imageUri && <PhotoCamera />}
+                                                </Avatar>
+                                            </IconButton>
+                                        </label>
 
                                         {formikProps.touched.imageUri && formikProps.errors.imageUri && (
                                             <Box className="errorMessage">
                                                 {formikProps.errors.imageUri}
                                             </Box>
                                         )}
+
                                     </Box>
                                 </Grid>
 
@@ -128,7 +162,8 @@ export default function Register() {
 
                                         <TextField
                                             id="firstName" label="שם פרטי:"
-                                            type='text'
+                                            // type='text'
+
                                             variant='standard'
                                             className={registerObj.inpCssClass}
                                             onChange={e => {

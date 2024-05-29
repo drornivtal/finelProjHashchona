@@ -8,8 +8,7 @@ export const CommunityContext = createContext();
 export default function CommunityContextProvider(props) {
 
     const [communities, setCommunities] = useState([]);
-
-    const addCommunity = (obj) => {
+  const addCommunity = (obj) => {
         setCommunities([...communities, obj]);
     };
     const removeCommunity = (id) => {
@@ -20,7 +19,7 @@ export default function CommunityContextProvider(props) {
         removeCommunity(obj.id);
         addCommunity(obj);
     };
-
+  
     // component did mount
     useEffect(() => {
         async function fetchAndSetCommunities() {
