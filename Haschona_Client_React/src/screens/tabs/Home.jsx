@@ -78,9 +78,9 @@ export default function Home() {
                     flexDirection: 'column',
                     justifyContent: 'flex-start',
                     alignItems: 'center',
-                    height: '18vh',
+                    height: '20vh',
                     width: '100%',
-                    // backgroundColor: 'greenyellow',
+                    marginTop: -7
                 }}
             >
                 <img
@@ -96,14 +96,14 @@ export default function Home() {
             {/* Categories Box */}
             <Box
                 sx={{
-                    backgroundColor: 'lightgray',
+                    backgroundColor: '#e0e0e0',
                     opacity: 0.8,
                     borderRadius: '10px',
                     height: '10vh',
                     width: '100%',
                     display: 'flex',
                     alignItems: 'center',
-                    overflowX: 'auto',  // Enable horizontal scrolling
+                    overflowX: 'auto',
                     overflowY: 'hidden',
                     whiteSpace: 'nowrap',  // Ensure the children stay in a single line
                     direction: 'rtl',
@@ -123,7 +123,6 @@ export default function Home() {
                                 onClick={() => handleIconClick(category.key)}
                                 sx={{
                                     margin: '3%',
-                                    // bgcolor: '#9274B2', //Light Purple
                                     bgcolor: '#708DD3', //LIght blue
                                     bgcolor: isSelected ? '#708DD3' : '#556cd6',
                                     borderRadius: 15,
@@ -144,8 +143,6 @@ export default function Home() {
             {/* Display Request Box */}
             <Box
                 sx={{
-                    // backgroundColor: 'orange',
-                    backgroundColor: '',
                     height: '53vh',
                     width: '100%',
                     paddingTop: '4%',

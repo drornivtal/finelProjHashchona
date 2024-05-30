@@ -21,24 +21,11 @@ import LogoImage from '../assets/Logo_TheStreets.png';
 
 import '../styles/RegisterStyles.css';
 import '../styles/LoginStyles.css';
+import { handleFileChange } from '../utilities/FunctionsUtilities';
 
 export default function Register() {
 
-    const handleFileChange = (file, setFieldValue) => {
-        if (!file) {
-            setFieldValue("imageUri", "");
-            return;
-        }
-        const reader = new FileReader();
-        reader.onload = () => {
-            setFieldValue("imageUri", reader.result);
-        };
-        reader.onerror = () => {
-            console.error("Failed to read file");
-            setFieldValue("imageUri", "");
-        };
-        reader.readAsDataURL(file);
-    };
+
 
     const navigate = useNavigate();
     const { state } = useLocation();
@@ -51,7 +38,7 @@ export default function Register() {
 
     const { communities } = useContext(CommunityContext);
     // const [user, setUser] = useState(JSON.parse(sessionStorage.getItem('user')) || '');
-    const [errorMessage, setErrorMessage] = useState('');
+    // const [errorMessage, setErrorMessage] = useState('');
 
     const apiNewUser = 'https://proj.ruppin.ac.il/cgroup62/test2/tar1/api/Users/InsertNewUser';
 

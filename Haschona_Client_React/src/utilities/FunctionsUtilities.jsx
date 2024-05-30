@@ -54,5 +54,22 @@ export async function geocodeAddress(address) {
         console.error('Error geocoding address:', error);
         throw error;
     }
-}
+};
 
+// create url from image file:
+export const handleFileChange = (file, setFieldValue) => {
+    if (!file) {
+        setFieldValue("imageUri", "");
+        return;
+    }
+    const reader = new FileReader();
+    reader.onload = () => {
+        setFieldValue("imageUri", reader.result);
+        console.log(reader.result);
+    };
+    reader.onerror = () => {
+        console.error("Failed to read file");
+        setFieldValue("imageUri", "");
+    };
+    reader.readAsDataURL(file);
+};

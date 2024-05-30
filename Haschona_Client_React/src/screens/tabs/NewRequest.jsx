@@ -63,6 +63,7 @@ export default function NewRequest() {
 
     return (
         <Container sx={{ display: 'flex', flexDirection: 'column', height: '90vh', width: '80vw' }}>
+
             <Box
                 sx={{
                     display: 'flex',
@@ -71,7 +72,7 @@ export default function NewRequest() {
                     alignItems: 'center',
                     height: '20vh',
                     width: '100%',
-                    // backgroundColor: 'greenyellow',
+                    marginTop: -7
 
                 }}
             >
@@ -85,8 +86,6 @@ export default function NewRequest() {
                 />
             </Box>
 
-
-            {/* <Box sx={{height: '80%',backgroundColor: 'orange' }} > */}
             <Box sx={{ height: '70vh', width: '100%' }} >
                 <Formik
                     initialValues={{
@@ -104,20 +103,15 @@ export default function NewRequest() {
                     {formikProps => (
 
                         <Form>
-
                             <Box
                                 sx={{
-                                    backgroundColor: 'lightgray',
-                                    opacity: 0.8,
+                                    backgroundColor: '#e0e0e0',
                                     marginBottom: '1%',
-                                    // paddingTop: '2%',
-                                    // borderEndEndRadius:'15px',
-                                    // borderEndStartRadius:'15px',
                                     borderRadius: '10px',
                                     height: '10%',
                                     width: '100%',
                                     display: 'flex',
-                                    overflowX: 'auto',  // Enable horizontal scrolling
+                                    overflowX: 'auto',
                                     whiteSpace: 'nowrap',  // Ensure the children stay in a single line
                                     direction: 'rtl',
                                     '&::-webkit-scrollbar': {
@@ -149,7 +143,6 @@ export default function NewRequest() {
 
                                             >
                                                 {IconComponent ? (
-
                                                     <IconComponent id={category.key} sx={{ color: 'white', fontSize: '28px' }} />
 
                                                 ) : null}
@@ -160,7 +153,7 @@ export default function NewRequest() {
 
                             </Box>
 
-                            <Grid container rowSpacing={4} justifyContent='center' paddingTop={1}>
+                            <Grid container rowSpacing={4} justifyContent='center' paddingTop={1} >
 
                                 {/* <InputLabel>:תאריך ושעה</InputLabel> */}
 

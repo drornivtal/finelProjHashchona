@@ -27,7 +27,6 @@ export const loginSchema = yup.object({
 export const registerSchema = yup.object({
 
     imageUri: yup.string().required("יש להעלות תמונת פרופיל"),
-    // imageUri: yup.string().url('Invalid image URL').required('Image is required'),
     firstName: yup.string().required("שדה זה הינו חובה").min(2, "יש לכתוב לפחות 2 תווים").matches(/^[\p{L} ]+$/u, 'יש להזין אותיות בלבד'),
     lastName: yup.string().required("שדה זה הינו חובה").min(2, "יש לכתוב לפחות 2 תווים").matches(/^[\p{L} ]+$/u, 'יש להזין אותיות בלבד'),
     gender: yup.string().required('יש לבחור ערך מהרשימה'),
@@ -51,7 +50,7 @@ export const registerSchema = yup.object({
 
 export const newCommunitySchema = yup.object({
 
-    //imageUri: yup.string().required()
+    imageUri: yup.string().required("יש להעלות תמונת קהילה"),
     communityName: yup.string().required("שדה זה הינו חובה").min(2, "יש לכתוב לפחות 2 תווים").matches(/^[\p{L} ]+$/u, 'יש להזין אותיות בלבד'),
     city: yup.string().required('יש לבחור ערך מהרשימה'),
     street: yup.string().required("שדה זה הינו חובה").min(2, "יש לכתוב לפחות 2 תווים").matches(/^[\p{L} ]+$/u, 'יש להזין אותיות בלבד'),

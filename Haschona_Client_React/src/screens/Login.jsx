@@ -58,9 +58,7 @@ export default function Login() {
 
     const getToMapCommunityPage = () => {
         navigate("/CommunitiesMap");
-    }
-
-
+    };
 
     return (
         <Container maxWidth="lg" style={{ height: '90vh', width: '75vw', display: 'flex', flexDirection: 'column' }}>

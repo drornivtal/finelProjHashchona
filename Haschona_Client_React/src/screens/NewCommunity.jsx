@@ -1,6 +1,6 @@
 
 
-import { Box, Button, Container, Grid, InputLabel, MenuItem, Select, TextField } from "@mui/material";
+import { Avatar, Box, Button, Container, Grid, IconButton, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import { Form, Formik } from "formik";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -12,6 +12,8 @@ import LogoImage from '../assets/Logo_TheStreets.png';
 import '../styles/LoginStyles.css';
 import '../styles/NewCommunityStyles.css';
 import { postAndPutReqFunction } from "../utilities/ApiUtilities";
+import { handleFileChange } from "../utilities/FunctionsUtilities";
+import { PhotoCamera } from "@mui/icons-material";
 
 const apiNewCommunity = 'https://proj.ruppin.ac.il/cgroup62/test2/tar1/api/Communities/InsertNewCommunity';
 
@@ -25,8 +27,6 @@ export default function NewCommunity() {
     //Check if userobj arrived!
     console.log(userManager);
 
-
-
     const handleFormSubmit = (values, actions) => {
 
         let community = {
@@ -34,7 +34,7 @@ export default function NewCommunity() {
             city: values.city,
             location: values.street,
             description: values.description,
-            primaryPic: "StamImg",
+            primaryPic: values.imageUri,
             status: ""
         };
 
@@ -50,7 +50,8 @@ export default function NewCommunity() {
     };
 
     return (
-        <Container maxWidth="lg" style={{ height: '90vh', display: 'flex', flexDirection: 'column' }}>
+        <Container
+            sx={{ height: '90vh', width: '75vw', display: 'flex', flexDirection: 'column' }}>
 
             <Box sx={{ backgroundColor: '#ffffff', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', marginBottom: '15%', marginTop: '5%', height: '10vh' }}>
                 <img src={LogoImage} alt="Logo" style={{ maxWidth: '50%' }} />
@@ -58,7 +59,7 @@ export default function NewCommunity() {
 
             <Box sx={{ backgroundColor: '#ffffff', height: '80vh' }}>
                 <Formik
-                    initialValues={{ communityName: '', city: '', street: '', description: '' }}
+                    initialValues={{ imageUri: '', communityName: '', city: '', street: '', description: '' }}
                     validationSchema={newCommunitySchema}
                     onSubmit={(values, actions) => {
                         console.log('Submitted!');
@@ -72,25 +73,41 @@ export default function NewCommunity() {
                                 {/* --- Input: imageUri--- */}
                                 <Grid item xs={12} >
                                     <Box>
-                                        <TextField
-                                            label="תמונת הקהילה:"
+
+                                        <input
+                                            label="תמונת פרופיל:"
                                             type='file'
-                                            variant='standard'
-                                            className="inpPurple"
-                                            onChange={e => {
-                                                formikProps.setFieldValue('imageUri', e.target.value);
+                                            accept="image/*"
+                                            style={{ display: 'none' }}
+                                            id="upload-button"
+                                            onChange={(e) => {
+                                                let imgFile = e.target.files[0];
+                                                handleFileChange(imgFile, formikProps.setFieldValue);
                                             }}
-                                            value={formikProps.values.imageUri}
                                             onBlur={formikProps.handleBlur('imageUri')}
-                                            error={Boolean(formikProps.errors.imageUri)}
-                                            sx={{ width: '50%' }}
+                                            error={formikProps.errors.imageUri}
+
                                         />
+                                        <label htmlFor="upload-button">
+                                            <IconButton component="span">
+                                                <Avatar
+                                                    src={formikProps.values.imageUri}
+                                                    sx={{
+                                                        width: 80, height: 80,
+                                                        bgcolor: "#9274B2"
+                                                    }}
+                                                >
+                                                    {!formikProps.values.imageUri && <PhotoCamera />}
+                                                </Avatar>
+                                            </IconButton>
+                                        </label>
 
                                         {formikProps.touched.imageUri && formikProps.errors.imageUri && (
                                             <Box className="errorMessage">
                                                 {formikProps.errors.imageUri}
                                             </Box>
                                         )}
+
                                     </Box>
                                 </Grid>
 
@@ -149,7 +166,6 @@ export default function NewCommunity() {
                                         )}
                                     </Box>
                                 </Grid>
-
 
                                 {/* ---Input: street--- */}
                                 <Grid item xs={12} >
@@ -213,15 +229,10 @@ export default function NewCommunity() {
                                         <li>לאחר אישור יצירת הקהילה אתה המנהל הבלעדי שלה</li>
                                         <li>משתמש יכול לנהל קהילה אחת בלבד</li>
                                     </ul>
-
-
                                 </Grid>
 
-
-
-
-
-                                <Grid item xs={12} sm={10} md={8} >
+                                {/* <Grid item xs={12} sm={10} md={8} > */}
+                                <Grid item xs={12} >
                                     <Button
                                         id='btnCreateCommunity'
                                         type='button'

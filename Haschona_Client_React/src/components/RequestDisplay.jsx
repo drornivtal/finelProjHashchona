@@ -16,6 +16,19 @@ export default function RequestDisplay(props) {
     const apiSubmitHelp = 'https://proj.ruppin.ac.il/cgroup62/test2/tar1/api/RequestsForHelp/usersWantToAssist';
     const apiCancelHelp = 'https://proj.ruppin.ac.il/cgroup62/test2/tar1/api/RequestsForHelp/updateUserStatusToReq';
 
+    // if (props.myProfile) {
+    //     stylesObj = {
+    //         bgColor: '#DABB80',
+    //         color: 'black'
+    //     }
+    // }
+    // else {
+    //      stylesObj = {
+    //         bgColor: '#708DD3',
+    //         color: '#708DD3'
+    //     }
+    // }
+
     const userDetails = JSON.parse(localStorage.getItem('user'));
 
     const [buttonStates, setButtonStates] = useState({}); // State to manage button's text
@@ -71,12 +84,15 @@ export default function RequestDisplay(props) {
 
             <Card sx={{ textAlign: 'right', backgroundColor: '#f2f2f2', borderRadius: 4, maxHeight: '160px', width: '375px' }}>
                 <CardContent >
-                    <Typography sx={{ fontSize: 15 }}
-                        color="#708DD3" >
+                    <Typography
+                        sx={{ fontSize: 15 }}
+                        // color="#708DD3" 
+                        color={(props.myProfile ? "black" : "#708DD3")}
+                    >
                         {/* טל ברק - בקשה 1010 */}
-                        {props.UserName}  - בקשה {props.ReqId}
+                        {props.UserName + (" -")}   בקשה {props.ReqId}
 
-                        <span style={{ marginRight: '7%', border: '1px solid #708DD3', borderRadius: 20, backgroundColor: '#708DD3', opacity: 0.8, color: 'black', padding: '1%', paddingLeft: '3%', paddingRight: '3%', fontSize: 14 }}>
+                        <span style={{ marginRight: '7%',  borderRadius: 20,  backgroundColor:(props.myProfile?"#DABB80":'#708DD3') , opacity: 0.8, color: 'black', padding: '1%', paddingLeft: '3%', paddingRight: '3%', fontSize: 14 }}>
                             {/* יום ד' 7/2 | 20:20 */}
 
                             {props.DueDateHebrewDay}  {props.DueDate} | {props.DueTime}
@@ -93,7 +109,9 @@ export default function RequestDisplay(props) {
                     <Box sx={{ display: 'flex', flexDirection: 'row', direction: 'rtl', marginTop: '1%' }}>
                         {/* <Avatar sx={{ backgroundColor: '#708DD3' }}>{(props.UserName).split('')[0]}</Avatar> */}
 
-                        <Avatar sx={{ backgroundColor: '#708DD3', width: 48, height: 48 }} alt={(props.UserName).split('')[0]} src={props.profileImg} />
+                        <Avatar sx={{ backgroundColor: '#708DD3', width: 48, height: 48 }}
+                            // alt={(props.UserName).split('')[0]}
+                            src={props.profileImg} />
 
                         <Typography variant="h7" component="h5" sx={{ paddingRight: 1.5, textAlign: 'right' }}>
                             {/* שלום, מחפשת מישהו שיוציא לי את הכלב
@@ -103,6 +121,7 @@ export default function RequestDisplay(props) {
                     </Box>
                 </CardContent>
                 <CardActions>
+                 
                     <Button size="small"
                         sx={{ backgroundColor: 'rgb(252, 252, 252)', border: '1px solid black', borderRadius: 20, color: 'black', marginTop: '-9%' }}
                         onClick={() => handleButtonClick(props.ReqId)}
